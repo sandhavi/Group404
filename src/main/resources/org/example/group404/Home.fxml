@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="310.0" prefWidth="449.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.group404.HomeController">
+   <children>
+      <Label layoutX="115.0" layoutY="46.0" text="Welcome to My Restaurant">
+         <font>
+            <Font name="Arial" size="19.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnCustomer" layoutX="55.0" layoutY="124.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="120.0" text="Customer" onAction="#handleCustomerLogin">
+         <font>
+            <Font name="Arial" size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnAdmin" layoutX="250.0" layoutY="123.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="120.0" text="Admin" onAction="#handleAdminLogin">
+         <font>
+            <Font name="Arial" size="21.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
