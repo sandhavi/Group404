@@ -1,4 +1,5 @@
 package org.example.group404;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -7,24 +8,74 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class AdminEventController {
 
     @FXML
-    private Button btnHome, btnLogOut, btnEventAll, btnEventNew, btnEventDeleteSearch, btnEventDeleteDelete, btnEventUpdate, btnEventUpdateSearch;
+    private TextField txtNewName;
     @FXML
-    private TextField txtEventNewName, txtEventNewDate, txtEventNewTime, txtEventNewSeats, txtEventNewDescription;
+    private TextArea txtNewDescription, txtEditDescription;
     @FXML
-    private TextField txtEventDeleteID;
+    private TextField txtDeleteID;
     @FXML
-    private TextField txtEventEditID, txtEventEditName, txtEventEditDate, txtEventEditTime, txtEditSeats, txtEventEditDescription;
+    private ComboBox<String> txtNewTime, txtEditTime;
     @FXML
-    private TableView<Event> tbEvents;
+    private DatePicker txtNewDate, txtEditDate;
     @FXML
-    private TableView<Event> tbEventsDelete;
+    private TextField txtEditID, txtEditName;
+    @FXML
+    private TableColumn<Event, Integer> colAllID;
+    @FXML
+    private TableColumn<Event, Integer> colDeleteID;
+    @FXML
+    private TableColumn<Event, String> colAllName, colAllDate, colAllTime, colAllSeats, colAllDescription;
+    @FXML
+    private TableColumn<Event, String> colDeleteName, colDeleteDate, colDeleteTime, colDeleteSeats, colDeleteDescription;
+    @FXML
+    private Spinner<Integer> txtNewSeats, txtEditSeats;
+
+    @FXML
+    private TableView<Event> tbAll;
+    @FXML
+    private TableView<Event> tbDelete;
+
+    @FXML
+    private void initialize() {
+        // Setup columns and values for TableViews
+        colAllID.setCellValueFactory(new PropertyValueFactory<>("event_id"));
+        colAllName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colAllDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colAllTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+        colAllSeats.setCellValueFactory(new PropertyValueFactory<>("seats_available"));
+        colAllDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+
+        colDeleteID.setCellValueFactory(new PropertyValueFactory<>("event_id"));
+        colDeleteName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colDeleteDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colDeleteTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+        colDeleteSeats.setCellValueFactory(new PropertyValueFactory<>("seats_available"));
+        colDeleteDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+
+        txtNewTime.getItems().addAll("08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00",
+                "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00");
+        txtNewTime.setPromptText("Select a time");
+
+        txtEditTime.getItems().addAll("08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00",
+                "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00");
+        txtEditTime.setPromptText("Select a time");
+
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 50, 1); // Min, Max, Initial value
+        txtNewSeats.setValueFactory(valueFactory);
+
+        SpinnerValueFactory<Integer> valueFactory2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 50, 1); // Min, Max, Initial value
+        txtEditSeats.setValueFactory(valueFactory2);
+    }
 
     @FXML
     private void btnBackActionPerformed(ActionEvent evt) {
@@ -45,7 +96,6 @@ public class AdminEventController {
         }
     }
 
-
     @FXML
     private void btnLogOutActionPerformed(ActionEvent evt) {
         try {
@@ -53,7 +103,7 @@ public class AdminEventController {
             Parent root = loader.load();
 
             Stage stage = new Stage();
-            stage.setTitle("Admin Home");
+            stage.setTitle("Admin Login");
             stage.setScene(new Scene(root));
             stage.show();
 
@@ -66,132 +116,139 @@ public class AdminEventController {
     }
 
     @FXML
-    private void handleViewAllEvents(ActionEvent event) {
-        Event eventObj = new Event();
-        ObservableList<Event> eventList = FXCollections.observableArrayList(eventObj.viewAllEvents());
-        tbEvents.setItems(eventList);
-    }
+    private void handleViewAllEvents(ActionEvent evt) {
+        Event event = new Event();
+        ObservableList<Event> eventItems = FXCollections.observableArrayList(event.viewAllEvents());
 
-    @FXML
+        tbAll.getItems().clear();
+        tbAll.setItems(eventItems);
+
+        if (eventItems.isEmpty()) {
+            showAlert("No Events", "No events found.", Alert.AlertType.INFORMATION);
+        }
+    }
+@FXML
     private void handleAddNewEvent(ActionEvent event) {
-        String name = txtEventNewName.getText();
-        String date = txtEventNewDate.getText();
-        String time = txtEventNewTime.getText();
-        String description = txtEventNewDescription.getText();
+        String name = txtNewName.getText();
+        String date = txtNewDate.getValue() != null ? txtNewDate.getValue().toString() : "";
+        String time = txtNewTime.getValue();
+        String description = txtNewDescription.getText();
 
         short seats;
         try {
-            seats = Short.parseShort(txtEventNewSeats.getText());
-        } catch (NumberFormatException e) {
-            showAlert("Error", "Unable to load Admin Home view.", Alert.AlertType.ERROR);
+            seats = txtNewSeats.getValue().shortValue();
+        } catch (Exception e) {
+            showAlert("Error", "Invalid number of seats entered.", Alert.AlertType.ERROR);
             return;
         }
 
-        if (name.isEmpty() || date.isEmpty() || time.isEmpty() || description.isEmpty()) {
-            showAlert("Error", "Unable to load Admin Home view.", Alert.AlertType.ERROR);
+        // Check if required fields are empty
+        if (name.isEmpty() || date.isEmpty() || time == null || time.isEmpty() || description.isEmpty()) {
+            showAlert("Error", "All fields must be filled, including time.", Alert.AlertType.ERROR);
             return;
         }
 
-        Event newEvent = new Event();
+        Event newEvent = new Event(name, description, date, time, seats);
 
         if (newEvent.addNewEvent()) {
-            showAlert("Error", "Unable to load Admin Home view.", Alert.AlertType.ERROR);
+            showAlert("Success", "Event added successfully.", Alert.AlertType.INFORMATION);
         } else {
-            showAlert("Error", "Unable to load Admin Home view.", Alert.AlertType.ERROR);
+            showAlert("Error", "Failed to add event.", Alert.AlertType.ERROR);
         }
     }
 
     @FXML
     private void handleEventDeleteSearch(ActionEvent event) {
-        String keyword = txtEventDeleteID.getText();
-
+        String keyword = txtDeleteID.getText();
         if (keyword.isEmpty()) {
-            showAlert("Error", "Unable to load Admin Home view.", Alert.AlertType.ERROR);
+            showAlert("Error", "Please enter an event ID to search.", Alert.AlertType.ERROR);
         } else {
             Event deleteEvent = new Event();
             ObservableList<Event> searchResult = FXCollections.observableArrayList();
-
             if (deleteEvent.searchEvent(keyword)) {
                 searchResult.add(deleteEvent);
-                tbEventsDelete.setItems(searchResult);
+                tbDelete.setItems(searchResult);
             } else {
-                showAlert("Error", "Unable to load Admin Home view.", Alert.AlertType.ERROR);
+                showAlert("Error", "Event not found.", Alert.AlertType.ERROR);
             }
         }
     }
 
     @FXML
     private void handleEventDelete(ActionEvent event) {
-        String eventId = txtEventDeleteID.getText();
-
+        String eventId = txtDeleteID.getText();
         if (eventId.isEmpty()) {
-            showAlert("Error", "Unable to load Admin Home view.", Alert.AlertType.ERROR);
+            showAlert("Error", "Please enter an event ID to delete.", Alert.AlertType.ERROR);
         } else {
             Event eventDelete = new Event();
-
             if (eventDelete.deleteEvent(eventId)) {
-                showAlert("Error", "Unable to load Admin Home view.", Alert.AlertType.ERROR);
+                showAlert("Success", "Event deleted successfully.", Alert.AlertType.INFORMATION);
             } else {
-                showAlert("Error", "Unable to load Admin Home view.", Alert.AlertType.ERROR);
+                showAlert("Error", "Failed to delete event.", Alert.AlertType.ERROR);
             }
         }
     }
 
+
     @FXML
     private void handleEventUpdate(ActionEvent event) {
-        String name = txtEventEditName.getText();
-        String date = txtEventEditDate.getText();
-        String time = txtEventEditTime.getText();
-        String description = txtEventEditDescription.getText();
+        String name = txtEditName.getText();
+        String date = txtEditDate.getValue().toString();
+        String time = txtEditTime.getValue();
+        String description = txtEditDescription.getText();
 
         if (!isValidDate(date)) {
-            showAlert("Error", "Unable to load Admin Home view.", Alert.AlertType.ERROR);
+            showAlert("Error", "Invalid date format. Please use YYYY-MM-DD.", Alert.AlertType.ERROR);
             return;
         }
 
         short seatsAvailable;
         try {
-            seatsAvailable = Short.parseShort(txtEditSeats.getText());
+            seatsAvailable = txtEditSeats.getValue().shortValue();
         } catch (NumberFormatException ex) {
-            showAlert("Error", "Unable to load Admin Home view.", Alert.AlertType.ERROR);
+            showAlert("Error", "Invalid number of seats entered.", Alert.AlertType.ERROR);
             return;
         }
 
         int eventId;
         try {
-            eventId = Integer.parseInt(txtEventEditID.getText());
+            eventId = Integer.parseInt(txtEditID.getText());
         } catch (NumberFormatException ex) {
-            showAlert("Error", "Unable to load Admin Home view.", Alert.AlertType.ERROR);
+            showAlert("Error", "Invalid event ID entered.", Alert.AlertType.ERROR);
             return;
         }
 
         Event eventToUpdate = new Event(eventId, name, description, date, time, seatsAvailable);
 
         if (eventToUpdate.updateEvent()) {
-            showAlert("Error", "Unable to load Admin Home view.", Alert.AlertType.ERROR);
+            showAlert("Success", "Event updated successfully.", Alert.AlertType.INFORMATION);
         } else {
-            showAlert("Error", "Unable to load Admin Home view.", Alert.AlertType.ERROR);
+            showAlert("Error", "Failed to update event.", Alert.AlertType.ERROR);
         }
     }
 
     @FXML
     private void handleEventUpdateSearch(ActionEvent event) {
-        String keyword = txtEventEditID.getText();
+        String keyword = txtEditID.getText();
 
         if (keyword.isEmpty()) {
-            showAlert("Error", "Unable to load Admin Home view.", Alert.AlertType.ERROR);
+            showAlert("Error", "Please enter an event ID to search.", Alert.AlertType.ERROR);
         } else {
-
             Event newEvent = new Event();
 
             if (newEvent.searchEvent(keyword)) {
-                txtEventEditName.setText(newEvent.getName());
-                txtEventEditDate.setText(newEvent.getDate());
-                txtEventEditTime.setText(newEvent.getTime());
-                txtEditSeats.setText(String.valueOf(newEvent.getSeats_available()));
-                txtEventEditDescription.setText(newEvent.getDescription());
+                txtEditName.setText(newEvent.getName());
+                if (newEvent.getDate() != null && !newEvent.getDate().isEmpty()) {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    LocalDate eventDate = LocalDate.parse(newEvent.getDate(), formatter);
+                    txtEditDate.setValue(eventDate);
+                }
+
+                txtEditTime.setValue(newEvent.getTime());
+                txtEditSeats.getValueFactory().setValue(newEvent.getSeats_available());
+                txtEditDescription.setText(newEvent.getDescription());
             } else {
-                showAlert("Error", "Unable to load Admin Home view.", Alert.AlertType.ERROR);
+                showAlert("Error", "Event not found.", Alert.AlertType.ERROR);
             }
         }
     }

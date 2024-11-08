@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
 public class Event {
     private int event_id;
@@ -26,6 +24,14 @@ public class Event {
         this.date = date;
         this.time = time;
         this.seats_available = seats_available;
+    }
+
+    public Event(String name, String description, String date, String time, short seats) {
+        this.name = name;
+        this.description = description;
+        this.date = date;
+        this.time = time;
+        this.seats_available = seats;
     }
 
     // Utility method to show JavaFX Alerts
@@ -81,7 +87,7 @@ public class Event {
         this.time = time;
     }
 
-    public short getSeats_available() {
+    public int getSeats_available() {
         return seats_available;
     }
 

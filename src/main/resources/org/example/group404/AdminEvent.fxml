@@ -1,14 +1,198 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.group404.AdminEventController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="483.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.group404.AdminEventController">
+   <children>
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="453.0" prefWidth="640.0">
+         <children>
+            <Text layoutX="205.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event Managemnet Panel">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+            </Text>
+            <Button fx:id="btnLogout" layoutX="556.0" layoutY="21.0" mnemonicParsing="false" onAction="#btnLogOutActionPerformed" text="Logout">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnBack" layoutX="16.0" layoutY="21.0" mnemonicParsing="false" onAction="#btnBackActionPerformed" prefHeight="26.0" prefWidth="71.0" text="Back">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </Button>
+            <TabPane layoutX="16.0" layoutY="74.0" prefHeight="370.0" prefWidth="610.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="View All Events">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="btnAll" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleViewAllEvents" prefHeight="26.0" prefWidth="166.0" text="View All Events">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Button>
+                              <TableView fx:id="tbAll" layoutX="14.0" layoutY="56.0" prefHeight="276.0" prefWidth="586.0">
+                                <columns>
+                                  <TableColumn fx:id="colAllID" prefWidth="56.79995346069336" text="Event ID" />
+                                  <TableColumn fx:id="colAllName" prefWidth="146.4000244140625" text="Name" />
+                                    <TableColumn fx:id="colAllDescription" prefWidth="153.59999084472656" text="Description" />
+                                    <TableColumn fx:id="colAllDate" prefWidth="83.99993896484375" text="Date" />
+                                    <TableColumn fx:id="colAllTime" prefWidth="61.60003662109375" text="Time" />
+                                    <TableColumn fx:id="colAllSeats" prefWidth="84.800048828125" text="Seats" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Add New Event">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Text layoutX="33.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="33.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="357.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="32.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="txtNewName" layoutX="161.0" layoutY="17.0" prefHeight="26.0" prefWidth="413.0" />
+                              <DatePicker fx:id="txtNewDate" layoutX="162.0" layoutY="64.0" prefHeight="26.0" prefWidth="150.0" showWeekNumbers="true" />
+                              <ComboBox fx:id="txtNewTime" layoutX="430.0" layoutY="64.0" prefHeight="26.0" prefWidth="145.0" />
+                              <TextArea fx:id="txtNewDescription" layoutX="162.0" layoutY="162.0" prefHeight="107.0" prefWidth="422.0" />
+                              <Button fx:id="btnNewAdd" layoutX="162.0" layoutY="291.0" mnemonicParsing="false" onAction="#handleAddNewEvent" prefHeight="26.0" prefWidth="422.0" text="Add New Event">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Spinner fx:id="txtNewSeats" editable="true" layoutX="163.0" layoutY="119.0" />
+                              <Text layoutX="32.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Seats">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab text="Edit Event">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Text layoutX="26.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event ID">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="txtEditID" layoutX="176.0" layoutY="26.0" prefHeight="26.0" prefWidth="281.0" />
+                              <Text layoutX="26.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="30.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="378.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="28.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="txtEditName" layoutX="177.0" layoutY="74.0" prefHeight="26.0" prefWidth="280.0" />
+                              <DatePicker fx:id="txtEditDate" layoutX="178.0" layoutY="122.0" prefHeight="26.0" prefWidth="147.0" />
+                              <Text layoutX="28.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of seats">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <TextArea fx:id="txtEditDescription" layoutX="179.0" layoutY="220.0" prefHeight="60.0" prefWidth="398.0" />
+                              <Spinner fx:id="txtEditSeats" layoutX="178.0" layoutY="171.0" />
+                              <ComboBox fx:id="txtEditTime" layoutX="444.0" layoutY="122.0" prefHeight="26.0" prefWidth="133.0" />
+                              <Button fx:id="btnEditSearch" layoutX="479.0" layoutY="26.0" mnemonicParsing="false" onAction="#handleEventUpdateSearch" prefHeight="26.0" prefWidth="98.0" text="Search">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnEditUpdate" layoutX="179.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleEventUpdate" prefHeight="26.0" prefWidth="398.0" text="Update Event">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Delete An Event">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Text layoutX="24.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event ID">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="txtDeleteID" layoutX="133.0" layoutY="24.0" prefHeight="26.0" prefWidth="230.0" />
+                              <Button fx:id="btnDeleteSearch" layoutX="393.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleEventDeleteSearch" prefHeight="26.0" prefWidth="71.0" text="Search">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnDeleteDelete" layoutX="503.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleEventDelete" prefHeight="26.0" prefWidth="71.0" text="Delete">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Button>
+                              <TableView fx:id="tbDelete" layoutX="24.0" layoutY="78.0" prefHeight="200.0" prefWidth="555.0">
+                                <columns>
+                                  <TableColumn fx:id="colDeleteID" prefWidth="59.19997787475586" text="Event ID" />
+                                  <TableColumn fx:id="colDeleteName" prefWidth="118.4000244140625" text="Name" />
+                                    <TableColumn fx:id="colDeleteDescription" prefWidth="193.59999084472656" text="Description" />
+                                    <TableColumn fx:id="colDeleteDate" prefWidth="72.0" text="Date" />
+                                    <TableColumn fx:id="colDeleteTime" prefWidth="70.39996337890625" text="Time" />
+                                    <TableColumn fx:id="colDeleteSeats" prefWidth="40.800048828125" text="Seats" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </Pane>
+   </children>
 </AnchorPane>
