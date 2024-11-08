@@ -199,7 +199,7 @@ public class Admin {
             dbConnector db = new dbConnector();
             connection = db.getConnection();
 
-            String sql = "SELECT reservation_id, name, date, time, guests FROM reservations";
+            String sql = "SELECT * FROM reservations";
             preparedStatement = connection.prepareStatement(sql);
 
             resultSet = preparedStatement.executeQuery();

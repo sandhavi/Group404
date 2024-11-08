@@ -47,7 +47,6 @@ public class AdminEventController {
 
     @FXML
     private void initialize() {
-        // Setup columns and values for TableViews
         colAllID.setCellValueFactory(new PropertyValueFactory<>("event_id"));
         colAllName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colAllDate.setCellValueFactory(new PropertyValueFactory<>("date"));

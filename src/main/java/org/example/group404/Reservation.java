@@ -8,14 +8,14 @@ import java.sql.Statement;
 
 public class Reservation {
     private int reservation_id;
-    private String customer_name;
+    private String name;
     private String date;
     private String time;
     private int no_of_people;
 
-    public Reservation(int reservation_id, String customer_name, String date, String time, int no_of_people) {
+    public Reservation(int reservation_id, String name, String date, String time, int no_of_people) {
         this.reservation_id = reservation_id;
-        this.customer_name = customer_name;
+        this.name = name;
         this.date = date;
         this.time = time;
         this.no_of_people = no_of_people;
@@ -40,12 +40,12 @@ public class Reservation {
         this.reservation_id = reservation_id;
     }
 
-    public String getCustomer_name() {
-        return customer_name;
+    public String getName() {
+        return name;
     }
 
-    public void setCustomer_name(String customer_name) {
-        this.customer_name = customer_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDate() {
@@ -83,7 +83,7 @@ public class Reservation {
             String sql = "INSERT INTO reservations (name, date, time, guests) VALUES (?, ?, ?, ?)";
             pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            pstmt.setString(1, this.customer_name);
+            pstmt.setString(1, this.name);
             pstmt.setString(2, this.date);
             pstmt.setString(3, this.time);
             pstmt.setInt(4, this.no_of_people);
@@ -154,43 +154,26 @@ public class Reservation {
     }
 
     public boolean searchID(String keyword) {
-        boolean isFound = false;
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
+        try (Connection conn = dbConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM reservations WHERE reservation_id LIKE ?")) {
 
-        try {
-            conn = dbConnector.getConnection();
-            String sql = "SELECT * FROM reservations WHERE reservation_id LIKE ?";
-            pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, "%" + keyword + "%");
-
-            rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                isFound = true;
-                this.setReservation_id(rs.getInt("reservation_id"));
-                this.setCustomer_name(rs.getString("name"));
-                this.setDate(rs.getString("date"));
-                this.setTime(rs.getString("time"));
-                this.setNo_of_people(rs.getInt("guests"));
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    this.setReservation_id(rs.getInt("reservation_id"));
+                    this.setName(rs.getString("name"));
+                    this.setDate(rs.getString("date"));
+                    this.setTime(rs.getString("time"));
+                    this.setNo_of_people(rs.getInt("guests"));
+                    return true;
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null)
-                    rs.close();
-                if (pstmt != null)
-                    pstmt.close();
-                if (conn != null)
-                    conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
-        return isFound;
+        return false;
     }
+
 
     public boolean searchName(String keyword) {
         boolean isFound = false;
@@ -209,7 +192,7 @@ public class Reservation {
             if (rs.next()) {
                 isFound = true;
                 this.setReservation_id(rs.getInt("reservation_id"));
-                this.setCustomer_name(rs.getString("name"));
+                this.setName(rs.getString("name"));
                 this.setDate(rs.getString("date"));
                 this.setTime(rs.getString("time"));
                 this.setNo_of_people(rs.getInt("guests"));
@@ -241,7 +224,7 @@ public class Reservation {
             String sql = "UPDATE reservations SET name = ?, date = ?, time = ?, guests = ? WHERE reservation_id = ?";
             pstmt = conn.prepareStatement(sql);
 
-            pstmt.setString(1, this.customer_name);
+            pstmt.setString(1, this.name);
             pstmt.setString(2, this.date);
             pstmt.setString(3, this.time);
             pstmt.setInt(4, this.no_of_people);

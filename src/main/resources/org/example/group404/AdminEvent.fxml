@@ -85,14 +85,14 @@
                               </Text>
                               <TextField fx:id="txtNewName" layoutX="161.0" layoutY="17.0" prefHeight="26.0" prefWidth="413.0" />
                               <DatePicker fx:id="txtNewDate" layoutX="162.0" layoutY="64.0" prefHeight="26.0" prefWidth="150.0" showWeekNumbers="true" />
-                              <ComboBox fx:id="txtNewTime" layoutX="430.0" layoutY="64.0" prefHeight="26.0" prefWidth="145.0" />
+                              <ComboBox fx:id="txtNewTime" editable="true" layoutX="430.0" layoutY="64.0" prefHeight="26.0" prefWidth="145.0" />
                               <TextArea fx:id="txtNewDescription" layoutX="162.0" layoutY="162.0" prefHeight="107.0" prefWidth="422.0" />
                               <Button fx:id="btnNewAdd" layoutX="162.0" layoutY="291.0" mnemonicParsing="false" onAction="#handleAddNewEvent" prefHeight="26.0" prefWidth="422.0" text="Add New Event">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Button>
-                              <Spinner fx:id="txtNewSeats" editable="true" layoutX="163.0" layoutY="119.0" />
+                              <Spinner fx:id="txtNewSeats" layoutX="163.0" layoutY="119.0" />
                               <Text layoutX="32.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Seats">
                                  <font>
                                     <Font name="Arial" size="14.0" />
