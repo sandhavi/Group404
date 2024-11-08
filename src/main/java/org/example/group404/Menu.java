@@ -6,24 +6,34 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class Menu {
-    private int item_id;
+    private final SimpleIntegerProperty item_id;
     private String name;
     private String description;
     private double price;
     private String category;
 
     public Menu(int item_id, String name, String description, double price, String category) {
-        this.item_id = item_id;
+        this.item_id = new SimpleIntegerProperty(item_id);
         this.name = name;
         this.description = description;
         this.price = price;
         this.category = category;
     }
-    // Utility method to show JavaFX Alerts
+
+    public Menu() {
+        this.item_id = new SimpleIntegerProperty(0);
+    }
+
+    public Menu(SimpleIntegerProperty itemId) {
+        this.item_id = itemId;
+    }
+
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -32,15 +42,16 @@ public class Menu {
         alert.showAndWait();
     }
 
-    public Menu() {
+    public int getItem_id() {
+        return item_id.get();
     }
 
-    public int getitem_id() {
+    public void setitem_id(int itemId) {
+        this.item_id.set(itemId);
+    }
+
+    public SimpleIntegerProperty item_idProperty() {
         return item_id;
-    }
-
-    public void setitem_id(int item_id) {
-        this.item_id = item_id;
     }
 
     public String getName() {
@@ -101,15 +112,12 @@ public class Menu {
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-            showAlert("Login Error", "Database connection error: " + ex.getMessage(), AlertType.ERROR);
+            showAlert("Database Error", "Database connection error: " + ex.getMessage(), AlertType.ERROR);
         } finally {
             try {
-                if (resultSet != null)
-                    resultSet.close();
-                if (preparedStatement != null)
-                    preparedStatement.close();
-                if (connection != null)
-                    connection.close();
+                if (resultSet != null) resultSet.close();
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
@@ -125,7 +133,6 @@ public class Menu {
 
         try {
             conn = dbConnector.getConnection();
-
             String sql = "INSERT INTO menu_items (name, category, price, description) VALUES (?, ?, ?, ?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, this.name);
@@ -138,17 +145,11 @@ public class Menu {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (pstmt != null) {
-                try {
-                    pstmt.close();
-                } catch (SQLException e) {
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                }
+            try {
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return result;
@@ -167,7 +168,6 @@ public class Menu {
             pstmt.setString(1, "%" + keyword + "%");
 
             rs = pstmt.executeQuery();
-
             if (rs.next()) {
                 isFound = true;
                 this.setitem_id(rs.getInt("item_id"));
@@ -180,12 +180,9 @@ public class Menu {
             e.printStackTrace();
         } finally {
             try {
-                if (rs != null)
-                    rs.close();
-                if (pstmt != null)
-                    pstmt.close();
-                if (conn != null)
-                    conn.close();
+                if (rs != null) rs.close();
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -241,7 +238,7 @@ public class Menu {
             conn = dbConnector.getConnection();
             String sql = "DELETE FROM menu_items WHERE item_id = ?";
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, item_id);
+            pstmt.setInt(1, Integer.parseInt(item_id));
 
             int rowsAffected = pstmt.executeUpdate();
             isDeleted = rowsAffected > 0;
@@ -249,10 +246,8 @@ public class Menu {
             e.printStackTrace();
         } finally {
             try {
-                if (pstmt != null)
-                    pstmt.close();
-                if (conn != null)
-                    conn.close();
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -273,7 +268,6 @@ public class Menu {
             pstmt.setString(1, category);
 
             rs = pstmt.executeQuery();
-
             while (rs.next()) {
                 Menu item = new Menu();
                 item.setitem_id(rs.getInt("item_id"));
@@ -287,12 +281,9 @@ public class Menu {
             e.printStackTrace();
         } finally {
             try {
-                if (rs != null)
-                    rs.close();
-                if (pstmt != null)
-                    pstmt.close();
-                if (conn != null)
-                    conn.close();
+                if (rs != null) rs.close();
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -309,12 +300,11 @@ public class Menu {
             conn = dbConnector.getConnection();
             String sql = "UPDATE menu_items SET name = ?, category = ?, price = ?, description = ? WHERE item_id = ?";
             pstmt = conn.prepareStatement(sql);
-
             pstmt.setString(1, this.name);
             pstmt.setString(2, this.category);
             pstmt.setDouble(3, this.price);
             pstmt.setString(4, this.description);
-            pstmt.setInt(5, this.item_id);
+            pstmt.setInt(5, this.getItem_id());
 
             int rowsAffected = pstmt.executeUpdate();
             result = rowsAffected > 0;
@@ -322,10 +312,8 @@ public class Menu {
             e.printStackTrace();
         } finally {
             try {
-                if (pstmt != null)
-                    pstmt.close();
-                if (conn != null)
-                    conn.close();
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }

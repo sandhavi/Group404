@@ -20,34 +20,13 @@ public class HomeController{
     @FXML
     private void handleCustomerLogin(ActionEvent event) {
         try {
-            // Load the AdminLogin scene with an absolute path
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/group404/CustomerLogin.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Customer Login");
-            stage.show();
-
-            // Close current window
-            Stage currentStage = (Stage) btnCustomer.getScene().getWindow();
-            currentStage.close();
-        } catch (Exception e) {
-            showAlert("Error", "Could not load Customer Login screen: " + e.getMessage(), Alert.AlertType.ERROR);
-        }
-    }
-
-    @FXML
-    private void handleAdminLogin(ActionEvent event) {
-        try {
-            // Load the AdminLogin scene with an absolute path
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/group404/AdminLogin.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Admin Login");
             stage.show();
 
-            // Close current window
             Stage currentStage = (Stage) btnAdmin.getScene().getWindow();
             currentStage.close();
         } catch (Exception e) {
@@ -55,7 +34,23 @@ public class HomeController{
         }
     }
 
-    // Utility method to show alerts
+    @FXML
+    private void handleAdminLogin(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/group404/AdminLogin.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Admin Login");
+            stage.show();
+
+            Stage currentStage = (Stage) btnAdmin.getScene().getWindow();
+            currentStage.close();
+        } catch (Exception e) {
+            showAlert("Error", "Could not load Admin Login screen: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

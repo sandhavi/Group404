@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -13,41 +14,40 @@ public class AdminHomeController {
 
     @FXML
     private Button btnLogout;
+    @FXML
+    private Button btnMenu, btnEvent, btnReservation, btnCustomer, btnAdmin;
 
     @FXML
-    private void handleMenuAction(ActionEvent event) {
-        openWindow("/org/example/Group404/AdminMenu.fxml", "Menu Items");
+    private void handleButtonAction(ActionEvent event) {
+        String fxmlFile = null;
+        String title = null;
+
+        if (event.getSource() == btnMenu) {
+            fxmlFile = "/org/example/group404/AdminMenu.fxml";
+            title = "Admin Menu";
+        } else if (event.getSource() == btnEvent) {
+            fxmlFile = "/org/example/group404/AdminEvent.fxml";
+            title = "Admin Event";
+        } else if (event.getSource() == btnReservation) {
+            fxmlFile = "/org/example/group404/AdminReservation.fxml";
+            title = "Admin Reservation";
+        } else if (event.getSource() == btnCustomer) {
+            fxmlFile = "/org/example/group404/AdminCustomer.fxml";
+            title = "Admin Customer";
+        } else if (event.getSource() == btnAdmin) {
+            fxmlFile = "/org/example/group404/AdminAdmin.fxml";
+            title = "Admin Settings";
+        } else if (event.getSource() == btnLogout) {
+            fxmlFile = "/org/example/group404/AdminLogin.fxml";
+            title = "Admin Login";
+        }
+
+        if (fxmlFile != null && title != null) {
+            openWindow(fxmlFile, title);
+            closeCurrentStage();
+        }
     }
 
-    @FXML
-    private void handleEventAction(ActionEvent event) {
-        openWindow("/org/example/Group404/EventAdmin.fxml", "Special Events");
-    }
-
-    @FXML
-    private void handleReservationAction(ActionEvent event) {
-        openWindow("/org/example/Group404/ReservationAdmin.fxml", "Reservations");
-    }
-
-    @FXML
-    private void handleCustomerAction(ActionEvent event) {
-        openWindow("/org/example/Group404/CustomerAdmin.fxml", "Customers");
-    }
-
-    @FXML
-    private void handleAdminAction(ActionEvent event) {
-        openWindow("/org/example/Group404/AdminAdmin.fxml", "Admin");
-    }
-
-    @FXML
-    private void handleLogoutAction(ActionEvent event) {
-        openWindow("/org/example/group404/AdminLogin.fxml", "Admin Login");
-        // Close the current AdminHome window
-        Stage stage = (Stage) btnLogout.getScene().getWindow();
-        stage.close();
-    }
-
-    // Helper method to open new windows
     private void openWindow(String fxmlFile, String title) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
@@ -57,7 +57,21 @@ public class AdminHomeController {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            showAlert("Error", "Could not load screen: "+"\n"+ e.getMessage(), Alert.AlertType.ERROR);
+            System.out.println("Error: " + e.getMessage());
         }
+    }
+
+    private void closeCurrentStage() {
+        Stage currentStage = (Stage) btnLogout.getScene().getWindow();
+        currentStage.close();
+    }
+
+    private void showAlert(String title, String message, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

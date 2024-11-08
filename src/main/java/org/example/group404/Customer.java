@@ -23,7 +23,7 @@ public class Customer {
         this.username = username;
         this.password = password;
     }
-    // Utility method to show JavaFX Alerts
+
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

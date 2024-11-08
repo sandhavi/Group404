@@ -53,7 +53,6 @@ public class AdminLoginController {
 
     private void openAdminHome() {
         try {
-            // Load and display the AdminHome screen
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/group404/AdminHome.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
@@ -61,7 +60,6 @@ public class AdminLoginController {
             stage.setTitle("Admin Home");
             stage.show();
 
-            // Close the login window
             Stage loginStage = (Stage) btnLogin.getScene().getWindow();
             loginStage.close();
         } catch (IOException e) {

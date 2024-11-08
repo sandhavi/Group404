@@ -42,27 +42,27 @@ public class CustomerHomeController {
 
     @FXML
     private void handleMenuButton(ActionEvent event) {
-        openNewWindow("/org/example/group404/AdminMenu.fxml");  // Replace with correct FXML path
+        openNewWindow("/org/example/group404/AdminMenu.fxml");
     }
 
     @FXML
     private void handleEventButton(ActionEvent event) {
-        openNewWindow("/org/example/group404/AdminEvents.fxml");  // Replace with correct FXML path
+        openNewWindow("/org/example/group404/AdminEvents.fxml");
     }
 
     @FXML
     private void handleReservationButton(ActionEvent event) {
-        openNewWindow("/org/example/group404/AdminReservation.fxml");  // Replace with correct FXML path
+        openNewWindow("/org/example/group404/AdminReservation.fxml");
     }
 
     @FXML
     private void handleProfileButton(ActionEvent event) {
-        openNewWindow("/org/example/group404/AdminProfile.fxml");  // Replace with correct FXML path
+        openNewWindow("/org/example/group404/AdminProfile.fxml");
     }
 
     @FXML
     private void handleLogOutButton(ActionEvent event) {
-        openNewWindow("/org/example/group404/CustomerLogin.fxml");  // Replace with correct FXML path
+        openNewWindow("/org/example/group404/CustomerLogin.fxml");
     }
 
     private void openNewWindow(String fxmlPath) {
@@ -73,7 +73,7 @@ public class CustomerHomeController {
 
             // Create a new stage (window) for the scene
             Stage stage = new Stage();
-            stage.setTitle("New Window");  // Set a title for the window
+            stage.setTitle("New Window");
             stage.setScene(new Scene(root));
             stage.show();
 

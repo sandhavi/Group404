@@ -27,6 +27,7 @@ public class Event {
         this.time = time;
         this.seats_available = seats_available;
     }
+
     // Utility method to show JavaFX Alerts
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);

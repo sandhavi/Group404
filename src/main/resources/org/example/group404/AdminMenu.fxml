@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="472.0" prefWidth="662.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.group404.AdminMenuController">
+   <children>
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="445.0" prefWidth="630.0">
+         <children>
+             <Button fx:id="btnBack" layoutX="29.0" layoutY="22.0" mnemonicParsing="false" onAction="#btnBackActionPerformed" text="Back">
+                 <font>
+                     <Font name="Arial" size="14.0" />
+                 </font>
+             </Button>
+             <Button fx:id="btnLogout" layoutX="553.0" layoutY="22.0" mnemonicParsing="false" onAction="#btnLogOutActionPerformed" text="Logout">
+                 <font>
+                     <Font name="Arial" size="14.0" />
+                 </font>
+             </Button>
+            <Text layoutX="200.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu Management Panel">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+            </Text>
+            <TabPane layoutX="21.0" layoutY="73.0" prefHeight="348.0" prefWidth="586.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="View Menu">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="231.0" prefWidth="552.0">
+                           <children>
+                              <Button fx:id="btnViewAll" layoutX="14.0" layoutY="21.0" mnemonicParsing="false" onAction="#btnViewMenuActionPerformed" prefHeight="26.0" prefWidth="201.0" text="View All Menu Items">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Button>
+                              <TableView fx:id="tbAll" layoutX="14.0" layoutY="60.0" prefHeight="248.0" prefWidth="559.0">
+                                <columns>
+                                  <TableColumn fx:id="colMenuID" prefWidth="55.99996566772461" text="Menu ID" />
+                                  <TableColumn fx:id="colMenuName" prefWidth="138.4000244140625" text="Name" />
+                                    <TableColumn fx:id="colMenuDescription" prefWidth="200.00001525878906" text="Description" />
+                                    <TableColumn fx:id="colMenuPrice" minWidth="3.20001220703125" prefWidth="95.20001220703125" text="Price" />
+                                    <TableColumn fx:id="colMenuCat" prefWidth="70.39996337890625" text="Category" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Add New Menu Item">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Text layoutX="28.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="28.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="28.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="28.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="txtNewName" layoutX="176.0" layoutY="23.0" prefHeight="26.0" prefWidth="337.0" />
+                              <TextArea fx:id="txtNewDescription" layoutX="179.0" layoutY="159.0" prefHeight="90.0" prefWidth="340.0" />
+                              <TextField fx:id="txtNewPrice" layoutX="176.0" layoutY="115.0" prefHeight="26.0" prefWidth="339.0" />
+                              <ComboBox fx:id="cmbNewCategory" layoutX="176.0" layoutY="68.0" prefHeight="26.0" prefWidth="338.0" promptText=" " />
+                              <Button fx:id="btnNewMenu" layoutX="179.0" layoutY="269.0" mnemonicParsing="false" onAction="#btnNewItemActionPerformed" prefHeight="26.0" prefWidth="339.0" text="Add New Menu Item">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab text="Search Menu Item">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Text layoutX="31.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="31.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="txtSearchName" layoutX="114.0" layoutY="33.0" prefHeight="26.0" prefWidth="261.0" />
+                              <TableView fx:id="tbSearch" layoutX="26.0" layoutY="135.0" prefHeight="170.0" prefWidth="546.0">
+                                 <columns>
+                                    <TableColumn fx:id="colSearchMenuID" prefWidth="55.99996566772461" text="Menu ID" />
+                                    <TableColumn fx:id="colSearchName" prefWidth="138.4000244140625" text="Name" />
+                                    <TableColumn fx:id="colSearchDescription" prefWidth="167.20001220703125" text="Description" />
+                                    <TableColumn fx:id="colSearchPrice" minWidth="3.20001220703125" prefWidth="96.0" text="Price" />
+                                    <TableColumn fx:id="colSearchCategory" prefWidth="86.39999999999998" text="Category" />
+                                 </columns>
+                              </TableView>
+                              <Button fx:id="btnNameSearch" layoutX="416.0" layoutY="33.0" mnemonicParsing="false" onAction="#btnSearchNameActionPerformed" prefHeight="26.0" prefWidth="157.0" text="Search">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnCatSearch" layoutX="416.0" layoutY="82.0" mnemonicParsing="false" onAction="#btnSearchCatActionPerformed" prefHeight="26.0" prefWidth="157.0" text="Search">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Button>
+                              <ComboBox fx:id="cmbCatSearch" layoutX="114.0" layoutY="82.0" prefHeight="26.0" prefWidth="260.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Edit Menu Item">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextField fx:id="txtEditID" layoutX="168.0" layoutY="14.0" prefHeight="26.0" prefWidth="262.0" />
+                              <TextField fx:id="txtEditName" layoutX="168.0" layoutY="60.0" prefHeight="26.0" prefWidth="262.0" />
+                              <TextField fx:id="txtEditPrice" layoutX="168.0" layoutY="160.0" prefHeight="26.0" prefWidth="261.0" />
+                              <TextArea fx:id="txtEditDescription" layoutX="168.0" layoutY="200.0" prefHeight="72.0" prefWidth="263.0" />
+                              <Button fx:id="btnEditUpdate" layoutX="168.0" layoutY="280.0" mnemonicParsing="false" onAction="#btnEditUpdateActionPerformed" prefHeight="26.0" prefWidth="264.0" text="Update Menu Item">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Text layoutX="42.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu ID">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="42.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="42.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="42.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="42.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="btnEditSearch" layoutX="447.0" layoutY="15.0" mnemonicParsing="false" onAction="#btnEditSearchActionPerformed" prefHeight="26.0" prefWidth="117.0" text="Search">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Button>
+                              <ComboBox fx:id="cmbEditCategory" editable="true" layoutX="168.0" layoutY="106.0" prefHeight="26.0" prefWidth="262.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Delete Menu Item">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Text layoutX="20.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu ID">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="txtMenuIDDelete" layoutX="103.0" layoutY="54.0" prefHeight="26.0" prefWidth="206.0" />
+                              <TableView fx:id="tbDelete" layoutX="20.0" layoutY="134.0" prefHeight="170.0" prefWidth="546.0">
+                                 <columns>
+                                    <TableColumn fx:id="colMenuIDDelete" prefWidth="55.99996566772461" text="Menu ID" />
+                                    <TableColumn fx:id="colNameDelete" prefWidth="138.4000244140625" text="Name" />
+                                    <TableColumn fx:id="colMenuDescriptionDelete" prefWidth="167.20001220703125" text="Description" />
+                                    <TableColumn fx:id="colMenuPriceDelete" minWidth="3.20001220703125" prefWidth="96.0" text="Price" />
+                                    <TableColumn fx:id="colMenuCategoryDelete" prefWidth="86.39999999999998" text="Category" />
+                                 </columns>
+                              </TableView>
+                              <Button fx:id="btnIDDelete" layoutX="459.0" layoutY="51.0" mnemonicParsing="false" onAction="#btnDeleteDeleteActionPerformed" prefHeight="26.0" prefWidth="107.0" text="Delete">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnIDearch" layoutX="329.0" layoutY="51.0" mnemonicParsing="false" onAction="#btnDeleteSearchActionPerformed" prefHeight="26.0" prefWidth="107.0" text="Search">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
