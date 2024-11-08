@@ -2,11 +2,17 @@ package org.example.group404;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.List;
 
 public class AdminReservationController {
@@ -41,7 +47,44 @@ public class AdminReservationController {
         colDeleteTime.setCellValueFactory(new PropertyValueFactory<>("time"));
         colDeleteSeats.setCellValueFactory(new PropertyValueFactory<>("no_of_people"));
     }
+    @FXML
+    private void btnBackActionPerformed(ActionEvent evt) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/group404/AdminHome.fxml"));
+            Parent root = loader.load();
 
+            Stage stage = new Stage();
+            stage.setTitle("Admin Home");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            ((Button) evt.getSource()).getScene().getWindow().hide();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(AlertType.ERROR, "Failed", "Sorry! Try Again");
+        }
+    }
+
+
+    @FXML
+    private void btnLogOutActionPerformed(ActionEvent evt) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/group404/AdminLogin.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Admin Home");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            ((Button) evt.getSource()).getScene().getWindow().hide();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(AlertType.ERROR, "Log Out Failed", "Sorry! Try Again");
+        }
+    }
     @FXML
     private void handleSearchReservation(ActionEvent event) {
         String keyword = txtDeleteID.getText();
