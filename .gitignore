@@ -36,3 +36,78 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+# Java specific files
+*.class
+*.log
+*.jar
+*.war
+*.ear
+
+# Compiled source code
+/target/
+/build/
+out/
+bin/
+
+# IntelliJ IDEA specific files
+.idea/
+/*.iml
+/.idea_modules/
+/out/
+/*.ipr
+/*.iws
+.idea/.name
+
+# Eclipse specific files
+.project
+.classpath
+.settings/
+*/.classpath
+*/.project
+
+# NetBeans specific files
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.generated/
+
+# VS Code specific files
+.vscode/
+
+# Maven specific files
+/.mvn/
+mvnw
+mvnw.cmd
+
+# Gradle specific files
+.gradle/
+/build/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# MySQL-specific
+*.sql
+*.sql.gz
+
+# JavaFX specific files (compiled JavaFX artifacts)
+*.fx
+
+# Temporary files and caches
+*.bak
+*.swp
+*.swo
+*.log
+*.tmp
+
+# JVM-specific files
+hs_err_pid*
+
+# JavaFX runtime libraries
+/lib/
