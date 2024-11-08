@@ -11,17 +11,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="472.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.group404.AdminAdmin">
+<AnchorPane prefHeight="472.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.group404.AdminAdminController">
    <children>
       <Pane layoutX="14.0" layoutY="14.0" prefHeight="440.0" prefWidth="660.0">
          <children>
-            <Button fx:id="btnBack" layoutX="22.0" layoutY="14.0" mnemonicParsing="false" text="Back">
+            <Button fx:id="btnBack" layoutX="22.0" layoutY="14.0" mnemonicParsing="false" text="Back" onAction="#btnBackActionPerformed">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnLogout" layoutX="583.0" layoutY="14.0" mnemonicParsing="false" text="Logout">
+            <Button fx:id="btnLogout" layoutX="583.0" layoutY="14.0" mnemonicParsing="false" text="Logout" onAction="#btnLogOutActionPerformed">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
@@ -59,9 +58,9 @@
                                  </font>
                               </Text>
                               <TextField fx:id="txtNewEmail" layoutX="186.0" layoutY="98.0" prefHeight="26.0" prefWidth="401.0" />
-                              <TextField fx:id="txtNewEmail" layoutX="187.0" layoutY="147.0" prefHeight="26.0" prefWidth="400.0" />
-                              <TextField fx:id="txtNewPassword" layoutX="189.0" layoutY="198.0" prefHeight="26.0" prefWidth="398.0" />
-                              <Button fx:id="btnNewAdmin" layoutX="299.0" layoutY="260.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="288.0" text="Create New Admin Account">
+                              <TextField fx:id="txtNewUsername" layoutX="187.0" layoutY="147.0" prefHeight="26.0" prefWidth="400.0" />
+                              <TextField fx:id="txtNewPasswords" layoutX="189.0" layoutY="198.0" prefHeight="26.0" prefWidth="398.0" />
+                              <Button fx:id="btnNewAdmin" layoutX="299.0" layoutY="260.0" mnemonicParsing="false" onAction="#btnNewAdminActionPerformed" prefHeight="26.0" prefWidth="288.0" text="Create New Admin Account">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
@@ -74,12 +73,12 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="btnDeleteDelete" layoutX="522.0" layoutY="43.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" text="Delete">
+                              <Button fx:id="btnDeleteDelete" layoutX="522.0" layoutY="43.0" mnemonicParsing="false" onAction="#btnDeleteDeleteActionPerformed" prefHeight="26.0" prefWidth="74.0" text="Delete">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="btnDeleteSearch" layoutX="419.0" layoutY="42.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Search">
+                              <Button fx:id="btnDeleteSearch" layoutX="419.0" layoutY="42.0" mnemonicParsing="false" onAction="#btnDeleteSearchActionPerformed" prefHeight="26.0" prefWidth="82.0" text="Search">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
@@ -92,11 +91,11 @@
                               <TextField fx:id="txtDeleteUsername" layoutX="179.0" layoutY="43.0" prefHeight="26.0" prefWidth="209.0" />
                               <TableView fx:id="tbAdmin" layoutX="40.0" layoutY="98.0" prefHeight="200.0" prefWidth="563.0">
                                 <columns>
-                                  <TableColumn prefWidth="67.20001983642578" text="Admin ID" />
-                                  <TableColumn prefWidth="140.0" text="Name" />
-                                    <TableColumn prefWidth="171.20001220703125" text="Email" />
-                                    <TableColumn prefWidth="86.39999389648438" text="Username" />
-                                    <TableColumn prefWidth="99.99993896484375" text="Password" />
+                                  <TableColumn fx:id="colAdminId" prefWidth="67.20001983642578" text="Admin ID" />
+                                  <TableColumn fx:id="colAdminName" prefWidth="140.0" text="Name" />
+                                    <TableColumn fx:id="colAdminEmail" prefWidth="171.20001220703125" text="Email" />
+                                    <TableColumn fx:id="colAdminUserName" prefWidth="86.39999389648438" text="Username" />
+                                    <TableColumn fx:id="colAdminPassword" prefWidth="99.99993896484375" text="Password" />
                                 </columns>
                               </TableView>
                            </children>

@@ -6,19 +6,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 
 public class Admin {
-    private int admin_id ;
+    private final SimpleIntegerProperty admin_id;
     private String name;
     private String email;
     private String username;
     private String password;
 
     public Admin(int admin_id, String name, String email, String username, String password) {
-        this.admin_id = admin_id;
+        this.admin_id = new SimpleIntegerProperty(admin_id);
         this.name = name;
         this.email = email;
         this.username = username;
@@ -33,14 +35,20 @@ public class Admin {
     }
 
 
-    public Admin() {}
-
-    public int getAdmin_id() {
-        return admin_id;
+    public Admin() {
+        this.admin_id = new SimpleIntegerProperty(0);
     }
 
-    public void setAdmin_id(int admin_id) {
-        this.admin_id = admin_id;
+    public Admin(SimpleIntegerProperty adminId) {
+        this.admin_id = adminId;
+    }
+
+    public int getAdmin_id() {
+        return admin_id.get();
+    }
+
+    public void setAdmin_id(int adminId) {
+        this.admin_id.set(adminId);
     }
 
     public String getName() {
