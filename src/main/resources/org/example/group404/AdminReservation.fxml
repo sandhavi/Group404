@@ -21,12 +21,12 @@
                   <Font name="Arial" size="20.0" />
                </font>
             </Text>
-            <Button fx:id="btnBack" layoutX="32.0" layoutY="21.0" mnemonicParsing="false" text="Back">
+            <Button fx:id="btnBack" layoutX="32.0" layoutY="21.0" mnemonicParsing="false" onAction="#btnBackActionPerformed" text="Back">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnLogout" layoutX="576.0" layoutY="21.0" mnemonicParsing="false" text="Logout">
+            <Button fx:id="btnLogout" layoutX="576.0" layoutY="21.0" mnemonicParsing="false" onAction="#btnLogOutActionPerformed" text="Logout">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
