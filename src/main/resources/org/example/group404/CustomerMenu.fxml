@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="469.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.group404.CustomerMenuController">
+   <children>
+      <Text layoutX="291.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnLogout" layoutX="545.0" layoutY="29.0" mnemonicParsing="false" onAction="#btnLogOutActionPerformed" text="Logout">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnBack" layoutX="36.0" layoutY="29.0" mnemonicParsing="false" onAction="#btnBackActionPerformed" text="Back">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Button>
+      <TabPane layoutX="36.0" layoutY="86.0" prefHeight="353.0" prefWidth="571.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="View All Menu Items">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="btnAll" layoutY="27.0" mnemonicParsing="false" onAction="#btnAllActionPerformed" prefHeight="26.0" prefWidth="163.0" text="View All Menu">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </Button>
+                        <TableView fx:id="tbAll" layoutY="74.0" prefHeight="244.0" prefWidth="571.0">
+                          <columns>
+                            <TableColumn fx:id="colName" prefWidth="139.199951171875" text="Name" />
+                            <TableColumn fx:id="colDescription" prefWidth="242.4000244140625" text="Description" />
+                              <TableColumn fx:id="colPrice" prefWidth="99.199951171875" text="Price" />
+                              <TableColumn fx:id="colCategory" prefWidth="91.99993896484375" text="Category" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Search Item">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="txtName" layoutX="164.0" layoutY="33.0" prefHeight="26.0" prefWidth="249.0" />
+                        <Text layoutX="33.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="33.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="btnName" layoutX="434.0" layoutY="34.0" mnemonicParsing="false" onAction="#btnNameSearchActionPerformed" prefHeight="26.0" prefWidth="109.0" text="Serach">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnCat" layoutX="434.0" layoutY="89.0" mnemonicParsing="false" onAction="#btnCatSearchActionPerformed" prefHeight="26.0" prefWidth="109.0" text="Serach">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </Button>
+                        <ComboBox fx:id="cmbCat" layoutX="164.0" layoutY="90.0" prefHeight="26.0" prefWidth="249.0" />
+                        <TableView fx:id="tbSearch" layoutY="139.0" prefHeight="171.0" prefWidth="571.0">
+                           <columns>
+                              <TableColumn fx:id="colNameSearch" prefWidth="139.199951171875" text="Name" />
+                              <TableColumn fx:id="colDescriptionSearch" prefWidth="242.4000244140625" text="Description" />
+                              <TableColumn fx:id="colPriceSearch" prefWidth="99.199951171875" text="Price" />
+                              <TableColumn fx:id="colCategorySearch" prefWidth="91.99993896484375" text="Category" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
