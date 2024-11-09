@@ -6,44 +6,49 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.group404.AdminHomeController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.group404.ControllerPackage.AdminHomeController">
    <children>
       <Pane layoutX="14.0" layoutY="14.0" prefHeight="372.0" prefWidth="570.0">
          <children>
-            <Button fx:id="btnLogout" layoutX="497.0" layoutY="21.0" mnemonicParsing="false" text="Logout" onAction="#handleButtonAction">
+            <Button fx:id="btnLogout" layoutX="497.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Logout">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btnBack" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" text="Back" onAction="#handleButtonAction" />
-            <Button fx:id="btnMenu" layoutX="196.0" layoutY="81.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="183.0" text="Menu Items" onAction="#handleButtonAction">
+            <Button fx:id="btnBack" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Back" />
+            <Button fx:id="btnMenu" layoutX="196.0" layoutY="81.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="183.0" text="Menu Items">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnEvent" layoutX="197.0" layoutY="141.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="183.0" text="Special Events" onAction="#handleButtonAction">
+            <Button fx:id="btnEvent" layoutX="197.0" layoutY="141.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="183.0" text="Special Events">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnReservation" layoutX="198.0" layoutY="200.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="183.0" text="Reservations" onAction="#handleButtonAction">
+            <Button fx:id="btnReservation" layoutX="198.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="183.0" text="Reservations">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnCustomer" layoutX="196.0" layoutY="256.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="183.0" text="Customers" onAction="#handleButtonAction">
+            <Button fx:id="btnCustomer" layoutX="196.0" layoutY="256.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="183.0" text="Customers">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnAdmin" layoutX="197.0" layoutY="315.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="183.0" text="Admin" onAction="#handleButtonAction">
+            <Button fx:id="btnAdmin" layoutX="197.0" layoutY="315.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="183.0" text="Admin">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
             </Button>
-            <Text layoutX="186.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Admin Panel">
+            <Text layoutX="168.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Admin Panel">
                <font>
-                  <Font name="Arial" size="18.0" />
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="459.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Serendib Flavors">
+               <font>
+                  <Font name="Arial Italic" size="12.0" />
                </font>
             </Text>
          </children>

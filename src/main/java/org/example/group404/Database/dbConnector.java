@@ -1,4 +1,4 @@
-package org.example.group404;
+package org.example.group404.Database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

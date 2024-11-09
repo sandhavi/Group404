@@ -1,4 +1,4 @@
-package org.example.group404;
+package org.example.group404.ClassPackage;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +10,7 @@ import java.util.List;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import org.example.group404.Database.dbConnector;
 
 public class Menu {
     private final SimpleIntegerProperty item_id;

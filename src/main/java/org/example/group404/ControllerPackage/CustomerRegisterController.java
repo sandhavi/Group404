@@ -1,4 +1,4 @@
-package org.example.group404;
+package org.example.group404.ControllerPackage;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,9 +7,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.example.group404.ClassPackage.Customer;
 
 import java.io.IOException;
 
@@ -30,10 +30,8 @@ public class CustomerRegisterController {
     @FXML
     private TextField txtPassword;
 
-    // Ensure this method matches your button's "onAction" event in the FXML
     @FXML
     private void btnSignInAction() {
-        // Get user input from the text fields
         String name = txtName.getText();
         String email = txtEmail.getText();
         String phone = txtPhone.getText();
@@ -42,6 +40,21 @@ public class CustomerRegisterController {
 
         if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || username.isEmpty() || password.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Registration", "All fields are required.");
+            return;
+        }
+
+        if (!isValidPhoneNumber(phone)) {
+            showAlert(Alert.AlertType.ERROR, "Registration", "Phone number must be exactly 10 digits.");
+            return;
+        }
+
+        if (!isValidEmail(email)) {
+            showAlert(Alert.AlertType.ERROR, "Registration", "Please enter a valid email address.");
+            return;
+        }
+
+        if (password.length() < 8) {
+            showAlert(Alert.AlertType.ERROR, "Registration", "Password must be at least 8 characters long.");
             return;
         }
 
@@ -74,7 +87,15 @@ public class CustomerRegisterController {
         }
     }
 
-    // Ensure this method matches your back button's "onAction" event in the FXML
+    private boolean isValidPhoneNumber(String phone) {
+        return phone.matches("\\d{10}");
+    }
+
+    // Method to validate email format
+    private boolean isValidEmail(String email) {
+        return email.contains("@") && email.contains(".");
+    }
+
     @FXML
     private void backLoginAction(ActionEvent evt) {
         try {
@@ -94,7 +115,6 @@ public class CustomerRegisterController {
         }
     }
 
-    // Helper method to show alerts
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

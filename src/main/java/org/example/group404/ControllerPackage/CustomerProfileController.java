@@ -1,4 +1,4 @@
-package org.example.group404;
+package org.example.group404.ControllerPackage;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +10,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.example.group404.ClassPackage.Customer;
 
 import java.io.IOException;
 

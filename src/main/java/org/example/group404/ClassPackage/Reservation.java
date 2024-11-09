@@ -1,4 +1,6 @@
-package org.example.group404;
+package org.example.group404.ClassPackage;
+
+import org.example.group404.Database.dbConnector;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -132,6 +134,7 @@ public class Reservation {
             if (rs.next()) {
                 isFound = true;
                 this.setReservation_id(rs.getInt("reservation_id"));
+                this.setName(rs.getString("name"));
                 this.setDate(rs.getString("date"));
                 this.setTime(rs.getString("time"));
                 this.setNo_of_people(rs.getInt("guests"));

@@ -8,13 +8,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="453.0" prefWidth="693.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.group404.CustomerEventController">
+<AnchorPane prefHeight="453.0" prefWidth="693.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.group404.ControllerPackage.CustomerEventController">
    <children>
       <Pane layoutX="14.0" layoutY="14.0" prefHeight="422.0" prefWidth="661.0">
          <children>
             <Text layoutX="252.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming Events">
                <font>
-                  <Font name="Arial" size="20.0" />
+                  <Font name="Arial Bold" size="20.0" />
                </font>
             </Text>
             <Button fx:id="btnBack" layoutX="36.0" layoutY="22.0" mnemonicParsing="false" onAction="#btnBackActionPerformed" text="Back">
@@ -41,7 +41,17 @@
                   <TableColumn fx:id="colSeats" prefWidth="92.79998779296875" text="Available Setas" />
               </columns>
             </TableView>
+            <Text layoutX="210.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Explore exciting events and celebrate with us!">
+               <font>
+                  <Font name="Arial Italic" size="12.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
+      <Text layoutX="562.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Serendib Flavors">
+         <font>
+            <Font name="Arial Italic" size="12.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
