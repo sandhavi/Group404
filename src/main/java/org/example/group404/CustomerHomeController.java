@@ -32,7 +32,7 @@ public class CustomerHomeController {
             fxmlFile = "/org/example/group404/CustomerMenu.fxml";
             title = "Customer Menu";
         } else if (event.getSource() == btnEvent) {
-            fxmlFile = "/org/example/group404/CustomerMenu.fxml";
+            fxmlFile = "/org/example/group404/CustomerEvent.fxml";
             title = "Customer Event";
         } else if (event.getSource() == btnReservation) {
             fxmlFile = "/org/example/group404/CustomerMenu.fxml";
