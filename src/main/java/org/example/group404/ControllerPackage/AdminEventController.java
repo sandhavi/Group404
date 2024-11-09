@@ -1,4 +1,4 @@
-package org.example.group404;
+package org.example.group404.ControllerPackage;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.example.group404.ClassPackage.Event;
 
 import java.io.IOException;
 import java.time.LocalDate;

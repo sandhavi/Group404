@@ -1,4 +1,4 @@
-package org.example.group404;
+package org.example.group404.ControllerPackage;
 
 
 import javafx.collections.FXCollections;
@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.example.group404.ClassPackage.Admin;
 
 import java.io.IOException;
 
@@ -41,7 +42,6 @@ public class AdminAdminController {
     @FXML
     private TableColumn<Admin, String> colAdminPassword;
 
-    // Initializes the TableView columns (this method is called when the controller is initialized)
     public void initialize() {
         colAdminId.setCellValueFactory(new PropertyValueFactory<>("admin_id"));
         colAdminName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -90,7 +90,6 @@ public class AdminAdminController {
         }
     }
 
-    // Method for registering a new admin
     @FXML
     private void btnNewAdminActionPerformed(ActionEvent evt) {
         String name = txtNewName.getText();
@@ -100,6 +99,16 @@ public class AdminAdminController {
 
         if (name.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty()) {
             showAlert("Admin Registration", "All fields are required.", AlertType.ERROR);
+            return;
+        }
+
+        if (!isValidEmail(email)) {
+            showAlert("Admin Registration", "Please enter a valid email address.", AlertType.ERROR);
+            return;
+        }
+
+        if (password.length() < 8) {
+            showAlert("Admin Registration", "Password must be at least 8 characters long.", AlertType.ERROR);
             return;
         }
 
@@ -117,7 +126,10 @@ public class AdminAdminController {
         }
     }
 
-    // Method for searching an admin
+    private boolean isValidEmail(String email) {
+        return email.contains("@") && email.contains(".");
+    }
+
     @FXML
     private void btnDeleteSearchActionPerformed(ActionEvent evt) {
         String keyword = txtDeleteUsername.getText();
@@ -135,11 +147,10 @@ public class AdminAdminController {
             tbAdmin.setItems(adminData);
         } else {
             showAlert("Search Admin", "Sorry! No matching admin found.", AlertType.ERROR);
-            tbAdmin.getItems().clear(); // Clear table if no admin is found
+            tbAdmin.getItems().clear();
         }
     }
 
-    // Method for deleting an admin
     @FXML
     private void btnDeleteDeleteActionPerformed(ActionEvent evt) {
         String username = txtDeleteUsername.getText();
@@ -153,13 +164,12 @@ public class AdminAdminController {
 
         if (adminToDelete.deleteAdmin(username)) {
             showAlert("Delete Admin", "Admin deleted successfully.", AlertType.INFORMATION);
-            tbAdmin.getItems().clear(); // Clear table after deletion
+            tbAdmin.getItems().clear();
         } else {
             showAlert("Delete Admin", "Sorry! No matching admin found.", AlertType.ERROR);
         }
     }
 
-    // Helper method to display alerts
     private void showAlert(String title, String message, AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -167,7 +177,6 @@ public class AdminAdminController {
         alert.showAndWait();
     }
 
-    // Helper method to clear the text fields for new admin registration
     private void clearNewAdminFields() {
         txtNewName.clear();
         txtNewEmail.clear();

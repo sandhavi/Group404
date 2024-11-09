@@ -7,18 +7,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="486.0" prefWidth="603.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.group404.CustomerRegisterController">
+<AnchorPane prefHeight="486.0" prefWidth="603.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.group404.ControllerPackage.CustomerRegisterController">
    <children>
       <Pane layoutX="14.0" layoutY="14.0" prefHeight="450.0" prefWidth="567.0">
          <children>
-            <Text layoutX="239.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register">
+            <Text layoutX="126.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create New Account - Serendib Flavors">
                <font>
-                  <Font name="Arial" size="20.0" />
+                  <Font name="Arial Bold" size="20.0" />
                </font>
             </Text>
             <TextField fx:id="txtName" layoutX="192.0" layoutY="85.0" prefHeight="25.0" prefWidth="304.0" />
-            <TextField fx:id="txtEmail" layoutX="192.0" layoutY="142.0" prefHeight="25.0" prefWidth="304.0" />
-            <TextField fx:id="txtPhone" layoutX="192.0" layoutY="199.0" prefHeight="25.0" prefWidth="304.0" />
+            <TextField fx:id="txtEmail" layoutX="192.0" layoutY="142.0" prefHeight="25.0" prefWidth="304.0" promptText="yourname@gmail.com" />
+            <TextField fx:id="txtPhone" layoutX="192.0" layoutY="199.0" prefHeight="25.0" prefWidth="304.0" promptText="0712345678" />
             <TextField fx:id="txtUsername" layoutX="192.0" layoutY="259.0" prefHeight="25.0" prefWidth="304.0" />
             <Button fx:id="btnNew" layoutX="192.0" layoutY="369.0" mnemonicParsing="false" onAction="#btnSignInAction" prefHeight="25.0" prefWidth="304.0" text="Create New Account" textAlignment="CENTER">
                <font>
@@ -60,7 +60,12 @@
                   <Font name="Arial" size="14.0" />
                </font>
             </Button>
-            <TextField fx:id="txtPassword" layoutX="192.0" layoutY="314.0" prefHeight="25.0" prefWidth="304.0" />
+            <TextField fx:id="txtPassword" layoutX="192.0" layoutY="314.0" prefHeight="25.0" prefWidth="304.0" promptText="Password must contain more than 7 characters" />
+            <Text layoutX="170.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Join us and start your flavor journey today!">
+               <font>
+                  <Font name="Arial Italic" size="12.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
    </children>

@@ -11,23 +11,23 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="472.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.group404.AdminAdminController">
+<AnchorPane prefHeight="472.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.group404.ControllerPackage.AdminAdminController">
    <children>
       <Pane layoutX="14.0" layoutY="14.0" prefHeight="440.0" prefWidth="660.0">
          <children>
-            <Button fx:id="btnBack" layoutX="22.0" layoutY="14.0" mnemonicParsing="false" text="Back" onAction="#btnBackActionPerformed">
+            <Button fx:id="btnBack" layoutX="22.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnBackActionPerformed" text="Back">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnLogout" layoutX="583.0" layoutY="14.0" mnemonicParsing="false" text="Logout" onAction="#btnLogOutActionPerformed">
+            <Button fx:id="btnLogout" layoutX="583.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnLogOutActionPerformed" text="Logout">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
             </Button>
             <Text layoutX="210.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Management Panel" wrappingWidth="253.7239990234375">
                <font>
-                  <Font name="Arial" size="20.0" />
+                  <Font name="Arial Bold" size="20.0" />
                </font>
             </Text>
             <TabPane layoutX="22.0" layoutY="74.0" prefHeight="348.0" prefWidth="615.0" tabClosingPolicy="UNAVAILABLE">
@@ -57,9 +57,9 @@
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="txtNewEmail" layoutX="186.0" layoutY="98.0" prefHeight="26.0" prefWidth="401.0" />
+                              <TextField fx:id="txtNewEmail" layoutX="186.0" layoutY="98.0" prefHeight="26.0" prefWidth="401.0" promptText="yourname@gmail.com" />
                               <TextField fx:id="txtNewUsername" layoutX="187.0" layoutY="147.0" prefHeight="26.0" prefWidth="400.0" />
-                              <TextField fx:id="txtNewPasswords" layoutX="189.0" layoutY="198.0" prefHeight="26.0" prefWidth="398.0" />
+                              <TextField fx:id="txtNewPasswords" layoutX="189.0" layoutY="198.0" prefHeight="26.0" prefWidth="398.0" promptText="Password must contain more than 7 characters" />
                               <Button fx:id="btnNewAdmin" layoutX="299.0" layoutY="260.0" mnemonicParsing="false" onAction="#btnNewAdminActionPerformed" prefHeight="26.0" prefWidth="288.0" text="Create New Admin Account">
                                  <font>
                                     <Font name="Arial" size="14.0" />
@@ -78,7 +78,7 @@
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="btnDeleteSearch" layoutX="419.0" layoutY="42.0" mnemonicParsing="false" onAction="#btnDeleteSearchActionPerformed" prefHeight="26.0" prefWidth="82.0" text="Search">
+                              <Button fx:id="btnDeleteSearch" layoutX="419.0" layoutY="42.0" mnemonicParsing="false" onAction="#btnDeleteSearchActionPerformed" prefHeight="26.0" prefWidth="82.0" text="Search" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
@@ -104,7 +104,17 @@
                 </Tab>
               </tabs>
             </TabPane>
+            <Text layoutX="211.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Empower your team for success and growth!">
+               <font>
+                  <Font name="Arial Italic" size="12.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
+      <Text layoutX="568.0" layoutY="463.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Serendib Flavors">
+         <font>
+            <Font name="Arial Italic" size="12.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

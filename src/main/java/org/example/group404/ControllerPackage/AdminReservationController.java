@@ -1,4 +1,4 @@
-package org.example.group404;
+package org.example.group404.ControllerPackage;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,9 +11,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
+import org.example.group404.ClassPackage.Admin;
+import org.example.group404.ClassPackage.Reservation;
 
 import java.io.IOException;
-import java.util.List;
 
 public class AdminReservationController {
 
@@ -125,9 +126,17 @@ public class AdminReservationController {
 
     @FXML
     private void handleViewAllReservations(ActionEvent event) {
-        Admin reservationsAll = new Admin();
-        List<Reservation> ReservationList = reservationsAll.viewAllReservation();
-        tbAll.setItems(FXCollections.observableArrayList(ReservationList));
+        Admin res = new Admin();
+        ObservableList<Reservation> resItems = FXCollections.observableArrayList(res.viewAllReservation());
+
+        System.out.println("Items to display: " + resItems.size()); // Debugging output
+
+        tbAll.getItems().clear();
+        tbAll.setItems(resItems);
+
+        if (resItems.isEmpty()) {
+            showAlert(AlertType.ERROR, "Search Reservation", "No reservations found.");
+        }
     }
 
     @FXML

@@ -1,4 +1,4 @@
-package org.example.group404;
+package org.example.group404.ControllerPackage;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.example.group404.ClassPackage.Menu;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,12 +21,12 @@ public class AdminMenuController {
     @FXML private TextField txtMenuIDDelete,txtSearchName, txtEditName,txtEditPrice, txtEditID,txtNewPrice, txtNewName;
     @FXML private ComboBox<String> cmbCatSearch,cmbEditCategory,cmbNewCategory;
     @FXML private TextArea txtNewDescription, txtEditDescription;
-    @FXML private TableView<Menu> tbDelete, menuTable,tbSearch, tbSearchView, tbDeletehView, tbAll;
-    @FXML private TableColumn<Menu, Integer> colMenuIDDelete, colMenuID, colMenuIDSearch, colMenuCat, colSearchMenuID, colSearchName, colSearchDescription;
-    @FXML private TableColumn<Menu, String> colNameDelete, colMenuName, colMenuNameSearch, colMenuNameDelete, colSearchCategory;
-    @FXML private TableColumn<Menu, String> colMenuDescription, colMenuDescriptionSearch, colMenuDescriptionDelete;
-    @FXML private TableColumn<Menu, Double> colMenuPrice, colMenuPriceSearch, colMenuPriceDelete, colSearchPrice;
-    @FXML private TableColumn<Menu, String> colMenuCategory, colMenuCategorySearch, colMenuCategoryDelete;
+    @FXML private TableView<org.example.group404.ClassPackage.Menu> tbDelete, menuTable,tbSearch, tbSearchView, tbDeletehView, tbAll;
+    @FXML private TableColumn<org.example.group404.ClassPackage.Menu, Integer> colMenuIDDelete, colMenuID, colMenuIDSearch, colMenuCat, colSearchMenuID, colSearchName, colSearchDescription;
+    @FXML private TableColumn<org.example.group404.ClassPackage.Menu, String> colNameDelete, colMenuName, colMenuNameSearch, colMenuNameDelete, colSearchCategory;
+    @FXML private TableColumn<org.example.group404.ClassPackage.Menu, String> colMenuDescription, colMenuDescriptionSearch, colMenuDescriptionDelete;
+    @FXML private TableColumn<org.example.group404.ClassPackage.Menu, Double> colMenuPrice, colMenuPriceSearch, colMenuPriceDelete, colSearchPrice;
+    @FXML private TableColumn<org.example.group404.ClassPackage.Menu, String> colMenuCategory, colMenuCategorySearch, colMenuCategoryDelete;
     @FXML private Button btnIDearch, btnIDDelete,btnBack,btnEditSearch, btnEditUpdate, btnCatSearch, btnNameSearch, btnNewMenu, btnLogout, btnViewAll;
 
 
@@ -122,7 +123,7 @@ public class AdminMenuController {
             return;
         }
 
-        Menu menuToUpdate = new Menu(itemId, name, description, price, category);
+        org.example.group404.ClassPackage.Menu menuToUpdate = new org.example.group404.ClassPackage.Menu(itemId, name, description, price, category);
 
         if (menuToUpdate.updateMenu()) {
             showAlert("Success", "Menu item updated successfully!", AlertType.INFORMATION);
@@ -138,7 +139,7 @@ public class AdminMenuController {
         if (itemid.isEmpty()) {
             showAlert("Delete Item", "Sorry! Have to enter item ID.", AlertType.ERROR);
         } else {
-            Menu menuDelete = new Menu();
+            org.example.group404.ClassPackage.Menu menuDelete = new org.example.group404.ClassPackage.Menu();
 
             if (menuDelete.deleteMenu(itemid)) {
                 showAlert("Delete Menu Item", "Menu Item deleted successfully.", AlertType.INFORMATION);
@@ -150,8 +151,8 @@ public class AdminMenuController {
 
     @FXML
     private void btnViewMenuActionPerformed(ActionEvent evt) {
-        Menu menu = new Menu();
-        ObservableList<Menu> menuItems = FXCollections.observableArrayList(menu.viewAllMenu());
+        org.example.group404.ClassPackage.Menu menu = new org.example.group404.ClassPackage.Menu();
+        ObservableList<org.example.group404.ClassPackage.Menu> menuItems = FXCollections.observableArrayList(menu.viewAllMenu());
 
         System.out.println("Items to display: " + menuItems.size()); // Debugging output
 
@@ -181,7 +182,7 @@ public class AdminMenuController {
             return;
         }
 
-        Menu newMenu = new Menu();
+        org.example.group404.ClassPackage.Menu newMenu = new org.example.group404.ClassPackage.Menu();
         newMenu.setName(name);
         newMenu.setCategory(category);
         newMenu.setPrice(price);
@@ -203,15 +204,15 @@ public class AdminMenuController {
             return;
         }
 
-        Menu menu = new Menu();
-        List<Menu> searchResults = menu.viewAllMenu().stream()
+        org.example.group404.ClassPackage.Menu menu = new org.example.group404.ClassPackage.Menu();
+        List<org.example.group404.ClassPackage.Menu> searchResults = menu.viewAllMenu().stream()
                 .filter(item -> item.getName().toLowerCase().contains(keyword.toLowerCase()))
                 .toList();
 
         if (searchResults.isEmpty()) {
             showAlert("Search Menu Item", "No matching items found.", AlertType.ERROR);
         } else {
-            ObservableList<Menu> searchResultList = FXCollections.observableArrayList(searchResults);
+            ObservableList<org.example.group404.ClassPackage.Menu> searchResultList = FXCollections.observableArrayList(searchResults);
             tbSearch.getItems().clear();
             tbSearch.setItems(searchResultList);
         }
@@ -225,8 +226,8 @@ public class AdminMenuController {
         if (selectedCategory == null || selectedCategory.isEmpty()) {
             showAlert("Search Menu Item", "Please select a category", AlertType.ERROR);
         } else {
-            Menu menu = new Menu();
-            ObservableList<Menu> items = FXCollections.observableArrayList(menu.getItemsByCategory(selectedCategory));
+            org.example.group404.ClassPackage.Menu menu = new org.example.group404.ClassPackage.Menu();
+            ObservableList<org.example.group404.ClassPackage.Menu> items = FXCollections.observableArrayList(menu.getItemsByCategory(selectedCategory));
 
             tbSearch.getItems().clear();
             tbSearch.setItems(items);
@@ -246,16 +247,16 @@ public class AdminMenuController {
             return;
         }
 
-        Menu menu = new Menu();
+        org.example.group404.ClassPackage.Menu menu = new org.example.group404.ClassPackage.Menu();
 
-        List<Menu> searchResults = menu.viewAllMenu().stream()
+        List<org.example.group404.ClassPackage.Menu> searchResults = menu.viewAllMenu().stream()
                 .filter(item -> item.getItem_id() == Integer.parseInt(keyword))
                 .toList();
 
         if (searchResults.isEmpty()) {
             showAlert("Search Menu Item", "No matching items found.", AlertType.ERROR);
         } else {
-            ObservableList<Menu> searchResultList = FXCollections.observableArrayList(searchResults);
+            ObservableList<org.example.group404.ClassPackage.Menu> searchResultList = FXCollections.observableArrayList(searchResults);
             tbDelete.getItems().clear();
             tbDelete.setItems(searchResultList);
         }
@@ -268,7 +269,7 @@ public class AdminMenuController {
         if (keyword.isEmpty()) {
             showAlert("Search Menu", "Please enter a valid Menu ID", AlertType.ERROR);
         } else {
-            Menu menu = new Menu();
+            org.example.group404.ClassPackage.Menu menu = new Menu();
 
             if (menu.searchMenu2(keyword)) {
                 txtEditName.setText(menu.getName());

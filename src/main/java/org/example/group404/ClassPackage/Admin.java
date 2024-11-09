@@ -1,4 +1,4 @@
-package org.example.group404;
+package org.example.group404.ClassPackage;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +10,7 @@ import java.util.List;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import org.example.group404.Database.dbConnector;
 
 
 public class Admin {
@@ -160,7 +161,7 @@ public class Admin {
             dbConnector db = new dbConnector();
             connection = db.getConnection();
 
-            String sql = "SELECT customer_id, name, phone, email FROM customers";
+            String sql = "SELECT * FROM customers";
             preparedStatement = connection.prepareStatement(sql);
 
             resultSet = preparedStatement.executeQuery();
@@ -190,7 +191,7 @@ public class Admin {
     }
 
     public List<Reservation> viewAllReservation() {
-        List<Reservation> res = new ArrayList<>();
+        List<Reservation> reservationList = new ArrayList<>();
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -209,9 +210,9 @@ public class Admin {
                 String name = resultSet.getString("name");
                 String date = resultSet.getString("date");
                 String time = resultSet.getString("time");
-                short guests = resultSet.getShort("guests");
+                int no_of_people = resultSet.getInt("guests");
 
-                res.add(new Reservation(reservation_id, name, date, time, guests));
+                reservationList.add(new Reservation(reservation_id, name, date, time, no_of_people));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -226,7 +227,7 @@ public class Admin {
             }
         }
 
-        return res;
+        return reservationList;
     }
     public boolean addNewAdmin() {
         boolean result = false;

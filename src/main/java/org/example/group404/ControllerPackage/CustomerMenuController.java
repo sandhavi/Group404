@@ -1,4 +1,4 @@
-package org.example.group404;
+package org.example.group404.ControllerPackage;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.example.group404.ClassPackage.Menu;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,15 +20,15 @@ public class CustomerMenuController {
 
 
     @FXML private TextField txtName;
-    @FXML private TableView<Menu> tbAll;
-    @FXML private TableView<Menu> tbSearch;
+    @FXML private TableView<org.example.group404.ClassPackage.Menu> tbAll;
+    @FXML private TableView<org.example.group404.ClassPackage.Menu> tbSearch;
     @FXML private ComboBox<String> cmbCat;
     @FXML private Button btnAll;
     @FXML private Button btnName;
     @FXML private Button btnCat;
 
-    @FXML private TableColumn<Menu, String> colName, colCategory, colPrice, colDescription;
-    @FXML private TableColumn<Menu, String> colNameSearch, colCategorySearch, colPriceSearch, colDescriptionSearch;
+    @FXML private TableColumn<org.example.group404.ClassPackage.Menu, String> colName, colCategory, colPrice, colDescription;
+    @FXML private TableColumn<org.example.group404.ClassPackage.Menu, String> colNameSearch, colCategorySearch, colPriceSearch, colDescriptionSearch;
 
     @FXML
     public void initialize() {
@@ -47,10 +48,10 @@ public class CustomerMenuController {
     }
 
     public void btnAllActionPerformed(ActionEvent event) {
-        Menu menu = new Menu();
-        List<Menu> menuItems = menu.viewAllMenu();
+        org.example.group404.ClassPackage.Menu menu = new org.example.group404.ClassPackage.Menu();
+        List<org.example.group404.ClassPackage.Menu> menuItems = menu.viewAllMenu();
 
-        ObservableList<Menu> menuData = FXCollections.observableArrayList(menuItems);
+        ObservableList<org.example.group404.ClassPackage.Menu> menuData = FXCollections.observableArrayList(menuItems);
 
         tbAll.setItems(menuData);
     }
@@ -61,10 +62,10 @@ public class CustomerMenuController {
         if (keyword.isEmpty()) {
             showAlert(AlertType.ERROR, "Search Menu Item", "Sorry! Have to enter the name of the item.");
         } else {
-            Menu searchMenu = new Menu();
+            org.example.group404.ClassPackage.Menu searchMenu = new org.example.group404.ClassPackage.Menu();
 
             if (searchMenu.searchMenu(keyword)) {
-                ObservableList<Menu> searchResults = FXCollections.observableArrayList();
+                ObservableList<org.example.group404.ClassPackage.Menu> searchResults = FXCollections.observableArrayList();
                 searchResults.add(searchMenu);
 
                 tbSearch.setItems(searchResults);
@@ -80,8 +81,8 @@ public class CustomerMenuController {
         if (selectedCategory == null || selectedCategory.isEmpty()) {
             showAlert(AlertType.ERROR, "Search Menu Item", "Sorry! Please select a category.");
         } else {
-            Menu menu = new Menu();
-            List<Menu> items = menu.getItemsByCategory(selectedCategory);
+            org.example.group404.ClassPackage.Menu menu = new org.example.group404.ClassPackage.Menu();
+            List<org.example.group404.ClassPackage.Menu> items = menu.getItemsByCategory(selectedCategory);
 
             if (!items.isEmpty()) {
                 ObservableList<Menu> categoryResults = FXCollections.observableArrayList(items);

@@ -1,6 +1,7 @@
-package org.example.group404;
+package org.example.group404.ClassPackage;
 
 import javafx.scene.control.Alert;
+import org.example.group404.Database.dbConnector;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

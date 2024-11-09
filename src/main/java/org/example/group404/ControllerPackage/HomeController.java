@@ -1,4 +1,4 @@
-package org.example.group404;
+package org.example.group404.ControllerPackage;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

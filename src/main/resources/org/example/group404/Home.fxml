@@ -4,24 +4,29 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="310.0" prefWidth="449.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.group404.HomeController">
+<AnchorPane prefHeight="310.0" prefWidth="464.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.group404.ControllerPackage.HomeController">
    <children>
-      <Label layoutX="115.0" layoutY="46.0" text="Welcome to My Restaurant">
+      <Label layoutX="94.0" layoutY="45.0" text="Welcome to Serendib Flavors">
          <font>
-            <Font name="Arial" size="19.0" />
+            <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="btnCustomer" layoutX="55.0" layoutY="124.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="120.0" text="Customer" onAction="#handleCustomerLogin">
+      <Button fx:id="btnCustomer" layoutX="94.0" layoutY="144.0" mnemonicParsing="false" onAction="#handleCustomerLogin" prefHeight="102.0" prefWidth="120.0" text="Customer">
          <font>
             <Font name="Arial" size="21.0" />
          </font>
       </Button>
-      <Button fx:id="btnAdmin" layoutX="250.0" layoutY="123.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="120.0" text="Admin" onAction="#handleAdminLogin">
+      <Button fx:id="btnAdmin" layoutX="245.0" layoutY="144.0" mnemonicParsing="false" onAction="#handleAdminLogin" prefHeight="102.0" prefWidth="120.0" text="Admin">
          <font>
             <Font name="Arial" size="21.0" />
          </font>
       </Button>
+      <Text layoutX="94.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discover the taste of Sri Lanka at Serendib!">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

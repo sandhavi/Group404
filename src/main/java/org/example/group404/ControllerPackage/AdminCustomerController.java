@@ -1,4 +1,4 @@
-package org.example.group404;
+package org.example.group404.ControllerPackage;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,6 +15,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.example.group404.ClassPackage.Admin;
+import org.example.group404.ClassPackage.Customer;
 
 
 import java.io.IOException;
@@ -29,7 +31,6 @@ public class AdminCustomerController {
     @FXML
     private TableColumn<Customer, String> colID, colName, colEmail, colPhone;
 
-    // Initialize TableView Columns
     public void initialize() {
         colID.setCellValueFactory(new PropertyValueFactory<>("customer_id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
