@@ -46,18 +46,15 @@ public class CustomerMenuController {
         colCategorySearch.setCellValueFactory(new PropertyValueFactory<>("category"));
     }
 
-    // Method to handle the "View All" button action
     public void btnAllActionPerformed(ActionEvent event) {
         Menu menu = new Menu();
         List<Menu> menuItems = menu.viewAllMenu();
 
         ObservableList<Menu> menuData = FXCollections.observableArrayList(menuItems);
 
-        // Set the data to the TableView
         tbAll.setItems(menuData);
     }
 
-    // Method to handle "Search by Name" button action
     public void btnNameSearchActionPerformed(ActionEvent event) {
         String keyword = txtName.getText();
 
@@ -68,9 +65,8 @@ public class CustomerMenuController {
 
             if (searchMenu.searchMenu(keyword)) {
                 ObservableList<Menu> searchResults = FXCollections.observableArrayList();
-                searchResults.add(searchMenu); // Assuming searchMenu holds the result
+                searchResults.add(searchMenu);
 
-                // Update the TableView with search result
                 tbSearch.setItems(searchResults);
             } else {
                 showAlert(AlertType.ERROR, "Search Menu Item", "Sorry! We do not have any matching item.");
@@ -78,7 +74,6 @@ public class CustomerMenuController {
         }
     }
 
-    // Method to handle "Search by Category" button action
     public void btnCatSearchActionPerformed(ActionEvent event) {
         String selectedCategory = cmbCat.getValue();
 
@@ -97,7 +92,6 @@ public class CustomerMenuController {
         }
     }
 
-    // Utility method to show alerts
     private void showAlert(AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
