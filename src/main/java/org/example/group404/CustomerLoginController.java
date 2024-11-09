@@ -68,4 +68,23 @@ public class CustomerLoginController {
             showAlert(AlertType.ERROR, "Error", "Unable to load Customer Home.");
         }
     }
+
+    @FXML
+    private void backSignUpAction(ActionEvent evt) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/group404/CustomerRegister.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Admin Home");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            ((Button) evt.getSource()).getScene().getWindow().hide();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error", "Sorry! Try Again");
+        }
+    }
 }

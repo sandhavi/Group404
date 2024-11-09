@@ -35,10 +35,10 @@ public class CustomerHomeController {
             fxmlFile = "/org/example/group404/CustomerEvent.fxml";
             title = "Customer Event";
         } else if (event.getSource() == btnReservation) {
-            fxmlFile = "/org/example/group404/CustomerMenu.fxml";
+            fxmlFile = "/org/example/group404/CustomerReservation.fxml";
             title = "Customer Reservation";
         } else if (event.getSource() == btnProfile) {
-            fxmlFile = "/org/example/group404/CustomerMenu.fxml";
+            fxmlFile = "/org/example/group404/CustomerProfile.fxml";
             title = "Customer Customer";
         } else if (event.getSource() == btnLogout) {
             fxmlFile = "/org/example/group404/Home.fxml";
