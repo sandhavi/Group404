@@ -91,7 +91,6 @@ public class CustomerRegisterController {
         return phone.matches("\\d{10}");
     }
 
-    // Method to validate email format
     private boolean isValidEmail(String email) {
         return email.contains("@") && email.contains(".");
     }

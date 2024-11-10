@@ -35,7 +35,6 @@ public class Event {
         this.seats_available = seats;
     }
 
-    // Utility method to show JavaFX Alerts
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

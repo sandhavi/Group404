@@ -70,10 +70,10 @@ public class AdminEventController {
                 "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00");
         txtEditTime.setPromptText("Select a time");
 
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 50, 1); // Min, Max, Initial value
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 50, 1);
         txtNewSeats.setValueFactory(valueFactory);
 
-        SpinnerValueFactory<Integer> valueFactory2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 50, 1); // Min, Max, Initial value
+        SpinnerValueFactory<Integer> valueFactory2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 50, 1);
         txtEditSeats.setValueFactory(valueFactory2);
     }
 
@@ -142,7 +142,6 @@ public class AdminEventController {
             return;
         }
 
-        // Check if required fields are empty
         if (name.isEmpty() || date.isEmpty() || time == null || time.isEmpty() || description.isEmpty()) {
             showAlert("Error", "All fields must be filled, including time.", Alert.AlertType.ERROR);
             return;

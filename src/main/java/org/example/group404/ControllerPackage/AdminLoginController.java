@@ -37,7 +37,6 @@ public class AdminLoginController {
 
             if (admin.validateLogin(username, password)) {
                 showAlert(AlertType.INFORMATION, "Login Success", "Login Successful.");
-                // Open AdminHome window
                 openAdminHome();
             } else {
                 showAlert(AlertType.WARNING, "Login Failed", "Invalid username or password.");
