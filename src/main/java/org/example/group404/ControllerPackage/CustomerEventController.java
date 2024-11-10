@@ -78,14 +78,11 @@ public class CustomerEventController {
         Event eventObj = new Event();
         List<Event> eventList = eventObj.viewAllEvents();
 
-        // Convert the list of events to an ObservableList for JavaFX
         ObservableList<Event> eventData = FXCollections.observableArrayList(eventList);
 
-        // Update the TableView with the data
         tbAll.setItems(eventData);
     }
 
-    // Initialization of the TableView columns
     private void showAlert(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

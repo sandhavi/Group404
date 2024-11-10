@@ -119,7 +119,8 @@ public class Admin {
 
         return isValid;
     }
-    public boolean saveToDatabase() {
+
+    public boolean addNewAdmin() {
         boolean result = false;
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -127,8 +128,9 @@ public class Admin {
         try {
             conn = dbConnector.getConnection();
 
-            String sql = "INSERT INTO admin (name, email, username, password) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO admin (name, email, username, password) VALUES (?, ?, ?, ?)";
             pstmt = conn.prepareStatement(sql);
+
             pstmt.setString(1, this.name);
             pstmt.setString(2, this.email);
             pstmt.setString(3, this.username);
@@ -140,16 +142,14 @@ public class Admin {
             e.printStackTrace();
         } finally {
             if (pstmt != null) {
-                try { pstmt.close(); } catch (SQLException e) {  }
+                try { pstmt.close(); } catch (SQLException e) { }
             }
             if (conn != null) {
-                try { conn.close(); } catch (SQLException e) {  }
+                try { conn.close(); } catch (SQLException e) { }
             }
         }
-
         return result;
     }
-
 
     public List<Customer> viewAllUsers() {
         List<Customer> customerList = new ArrayList<>();
@@ -228,36 +228,6 @@ public class Admin {
         }
 
         return reservationList;
-    }
-    public boolean addNewAdmin() {
-        boolean result = false;
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-
-        try {
-            conn = dbConnector.getConnection();
-
-            String sql = "INSERT INTO admin (name, email, username, password) VALUES (?, ?, ?, ?)";
-            pstmt = conn.prepareStatement(sql);
-
-            pstmt.setString(1, this.name);
-            pstmt.setString(2, this.email);
-            pstmt.setString(3, this.username);
-            pstmt.setString(4, this.password);
-
-            int rowsAffected = pstmt.executeUpdate();
-            result = rowsAffected > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (pstmt != null) {
-                try { pstmt.close(); } catch (SQLException e) { }
-            }
-            if (conn != null) {
-                try { conn.close(); } catch (SQLException e) { }
-            }
-        }
-        return result;
     }
 
     public boolean searchAdmin(String keyword) {

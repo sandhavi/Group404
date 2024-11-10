@@ -118,7 +118,7 @@ public class AdminCustomerController {
 
             if (deleteCustomer.deleteCustomer(name)) {
                 showAlert(AlertType.INFORMATION, "Delete Customer", "Customer deleted successfully.");
-                handleViewAllCustomers(null); // Refresh the table after deletion
+                handleViewAllCustomers(null);
             } else {
                 showAlert(AlertType.ERROR, "Delete Customer", "Sorry! No matching customer found.");
             }
